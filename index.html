@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/MarkerCluster.css">
         <link rel="stylesheet" href="css/MarkerCluster.Default.css">
-        <link rel="stylesheet" href="css/leaflet-search.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
@@ -28,7 +27,6 @@
         </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
-        <script src="js/multi-style-layer.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -39,9 +37,7 @@
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="js/leaflet.markercluster.js"></script>
-        <script src="js/leaflet-search.js"></script>
         <script src="data/OfertaSoftec_2.js"></script>
-        <script src="data/Fichadedesarrollos_3.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
@@ -262,73 +258,6 @@
 
         bounds_group.addLayer(layer_OfertaSoftec_2);
         cluster_OfertaSoftec_2.addTo(map);
-        function pop_Fichadedesarrollos_3(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">fid</th>\
-                        <td>' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">cve_desarrollo</th>\
-                        <td>' + (feature.properties['cve_desarrollo'] !== null ? autolinker.link(feature.properties['cve_desarrollo'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">url_reporte</th>\
-                        <td>' + (feature.properties['url_reporte'] !== null ? autolinker.link(feature.properties['url_reporte'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">nombre</th>\
-                        <td>' + (feature.properties['nombre'] !== null ? autolinker.link(feature.properties['nombre'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        var pattern_Fichadedesarrollos_3_0 = new L.StripePattern({
-            weight: 0.3,
-            spaceWeight: 2.0,
-            color: '#98221e',
-            opacity: 1.0,
-            spaceOpacity: 0,
-            angle: 315
-        });
-        pattern_Fichadedesarrollos_3_0.addTo(map);
-        function style_Fichadedesarrollos_3_0() {
-            return {
-                pane: 'pane_Fichadedesarrollos_3',
-                stroke: false,
-                fillOpacity: 1,
-                fillPattern: pattern_Fichadedesarrollos_3_0,
-                interactive: true,
-            }
-        }
-        function style_Fichadedesarrollos_3_1() {
-            return {
-                pane: 'pane_Fichadedesarrollos_3',
-                opacity: 1,
-                color: 'rgba(152,34,30,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 2.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-        }
-        map.createPane('pane_Fichadedesarrollos_3');
-        map.getPane('pane_Fichadedesarrollos_3').style.zIndex = 403;
-        map.getPane('pane_Fichadedesarrollos_3').style['mix-blend-mode'] = 'normal';
-        var layer_Fichadedesarrollos_3 = new L.geoJson.multiStyle(json_Fichadedesarrollos_3, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Fichadedesarrollos_3',
-            layerName: 'layer_Fichadedesarrollos_3',
-            pane: 'pane_Fichadedesarrollos_3',
-            onEachFeature: pop_Fichadedesarrollos_3,
-            styles: [style_Fichadedesarrollos_3_0,style_Fichadedesarrollos_3_1,]
-        });
-        bounds_group.addLayer(layer_Fichadedesarrollos_3);
-        map.addLayer(layer_Fichadedesarrollos_3);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -340,15 +269,8 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Fichadedesarrollos_3.png" /> Ficha de desarrollos': layer_Fichadedesarrollos_3,'Oferta Softec<br /><table><tr><td style="text-align: center;"><img src="legend/OfertaSoftec_2_0170.png" /></td><td>0 - 1.7</td></tr><tr><td style="text-align: center;"><img src="legend/OfertaSoftec_2_17391.png" /></td><td>1.7 - 3.9</td></tr><tr><td style="text-align: center;"><img src="legend/OfertaSoftec_2_39742.png" /></td><td>3.9 - 7.4</td></tr><tr><td style="text-align: center;"><img src="legend/OfertaSoftec_2_741333.png" /></td><td>7.4 - 13.3</td></tr><tr><td style="text-align: center;"><img src="legend/OfertaSoftec_2_1332394.png" /></td><td>13.3 - 23.9</td></tr></table>': cluster_OfertaSoftec_2,"Mapa de calor Absorción": layer_MapadecalorAbsorcin_1,"Mapa base": layer_Mapabase_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'Oferta Softec<br /><table><tr><td style="text-align: center;"><img src="legend/OfertaSoftec_2_0170.png" /></td><td>0 - 1.7</td></tr><tr><td style="text-align: center;"><img src="legend/OfertaSoftec_2_17391.png" /></td><td>1.7 - 3.9</td></tr><tr><td style="text-align: center;"><img src="legend/OfertaSoftec_2_39742.png" /></td><td>3.9 - 7.4</td></tr><tr><td style="text-align: center;"><img src="legend/OfertaSoftec_2_741333.png" /></td><td>7.4 - 13.3</td></tr><tr><td style="text-align: center;"><img src="legend/OfertaSoftec_2_1332394.png" /></td><td>13.3 - 23.9</td></tr></table>': cluster_OfertaSoftec_2,"Mapa de calor Absorción": layer_MapadecalorAbsorcin_1,"Mapa base": layer_Mapabase_0,},{collapsed:false}).addTo(map);
         setBounds();
-        map.addControl(new L.Control.Search({
-            layer: layer_OfertaSoftec_2,
-            initial: false,
-            hideMarkerOnCollapse: true,
-            propertyName: 'nombre'}));
-        document.getElementsByClassName('search-button')[0].className +=
-         ' fa fa-binoculars';
         L.ImageOverlay.include({
             getBounds: function () {
                 return this._bounds;
